@@ -165,6 +165,7 @@ class TwoLayerNet(object):
     # Use SGD to optimize the parameters in self.model
     loss_history = []
     lossEpoch_history=[]
+    loss_history_cv=[]
     train_acc_history = []
     val_acc_history = []
     v1=v2=v3=v4=0
@@ -189,6 +190,7 @@ class TwoLayerNet(object):
       loss, grads = self.loss(X_batch, y=y_batch, reg=reg)
       loss_history.append(loss)
 
+
       #########################################################################
       # TODO: Use the gradients in the grads dictionary to update the         #
       # parameters of the network (stored in the dictionary self.params)      #
@@ -210,6 +212,9 @@ class TwoLayerNet(object):
       self.params['b1']+=-learning_rate*grads['b1']
       self.params['b2']+=-learning_rate*grads['b2']
 
+      # loss_cv, grads_cv = self.loss(X_val, y=y_val, reg=reg)
+      # loss_history_cv.append(loss_cv)
+
       #########################################################################
       #                             END OF YOUR CODE                          #
       #########################################################################
@@ -230,8 +235,16 @@ class TwoLayerNet(object):
         # Decay learning rate
         learning_rate *= learning_rate_decay
 
+    # for i in num_train:
+    #   loss_train, grads_train = self.loss(X[1:i,:], y=y[1:i,:], reg=0)
+
+    #   loss_history_train.append(loss)
+
+    #   loss_cv, grads_cv = self.loss(X_val, y_val=y_val, reg=0)
+    #   loss_history_cv.append(loss)
     return {
       'loss_history': loss_history,
+      # 'loss_history_cv': loss_history_cv,
       'train_acc_history': train_acc_history,
       'val_acc_history': val_acc_history,
       'lossEpoch_history':lossEpoch_history
