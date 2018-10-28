@@ -1,2 +1,2 @@
-# Convolutional-Neural-Networks
-Solutions to assignments of cs231n-Stanford
+# Neural Nets
+Implementation of Neural Networks and linear classifiers(knn) from scratch
